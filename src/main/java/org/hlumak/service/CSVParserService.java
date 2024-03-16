@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Objects;
 
 public class CSVParserService {
     public ArrayList<Article> parse(String stringForParse)  {
@@ -26,7 +27,7 @@ public class CSVParserService {
             }
 
             articleList.add(new Article(
-                    Integer.parseInt(values[0]),
+                    Objects.equals(values[0], "") ? 0 : Integer.parseInt(values[0]),
                     values[1],
                     values[2].replaceAll("^\"|\"$", "").replace("\"\"", "\""),
                     articleTime,

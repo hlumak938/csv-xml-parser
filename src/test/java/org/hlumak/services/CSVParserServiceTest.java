@@ -16,7 +16,7 @@ public class CSVParserServiceTest {
 
     private final CSVParserService csvParser = new CSVParserService();
 
-    String parseString = csvParser.readFromFile("C:\\Users\\XoXoJl\\Desktop\\Data_About_Articles.csv");
+    String parseString = csvParser.readFromFile("files/Data_About_Articles.csv");
     ArrayList<Article> result = csvParser.parse(parseString);
 
     @Test

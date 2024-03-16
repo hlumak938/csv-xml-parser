@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="207169a9-5972-43b5-a055-7306ab4aa4e8" name="Changes" comment="Edited test">
+    <list default="true" id="207169a9-5972-43b5-a055-7306ab4aa4e8" name="Changes" comment="Added a few bug fixes, additional tests">
+      <change afterPath="$PROJECT_DIR$/files/Data_About_Articles.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/service/CSVParserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/service/CSVParserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/hlumak/services/CSVParserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/hlumak/services/CSVParserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +57,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Programming\Java_Projects\csv-xml-parser\src\main\java\org\hlumak" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.CSVParserServiceTest">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.hlumak.App" />
       <module name="csv-xml-parser" />
@@ -66,6 +72,21 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CSVParserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="csv-xml-parser" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.hlumak.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.hlumak.services" />
+      <option name="MAIN_CLASS_NAME" value="org.hlumak.services.CSVParserServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -83,6 +104,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CSVParserServiceTest" />
         <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
@@ -104,7 +126,7 @@
       <updated>1710615305274</updated>
       <workItem from="1710615306343" duration="763000" />
       <workItem from="1710616079520" duration="16000" />
-      <workItem from="1710616112592" duration="1495000" />
+      <workItem from="1710616112592" duration="2528000" />
     </task>
     <task id="LOCAL-00001" summary="Made csvParse() method">
       <option name="closed" value="true" />
@@ -138,7 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710617465473</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added a few bug fixes, additional tests">
+      <option name="closed" value="true" />
+      <created>1710617803086</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1710617803086</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +179,7 @@
     <MESSAGE value="Updated structure, added test case" />
     <MESSAGE value="Some fixes, added Comment with answers to Article" />
     <MESSAGE value="Edited test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edited test" />
+    <MESSAGE value="Added a few bug fixes, additional tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a few bug fixes, additional tests" />
   </component>
 </project>

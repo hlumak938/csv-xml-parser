@@ -8,7 +8,7 @@ public class App
 {
     public static void main(String[] args) {
         CSVParserService csvParserService = new CSVParserService();
-        String parseString =  csvParserService.readFromFile("C:\\Users\\XooJl\\Desktop\\Data_About_Articles.csv");
+        String parseString =  csvParserService.readFromFile("files/Data_About_Articles.csv");
         ArrayList<Article> articles = csvParserService.parse(parseString);
         articles.forEach(article -> System.out.println(article.toString()));
     }
