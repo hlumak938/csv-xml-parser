@@ -1,4 +1,4 @@
-package org.hlumak;
+package org.hlumak.services;
 
 import org.hlumak.entity.Comment;
 import org.junit.jupiter.api.Assertions;
@@ -12,12 +12,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class AppTest {
+public class CSVParserServiceTest {
 
     private final CSVParserService csvParser = new CSVParserService();
 
     @Test
-    public void testCsvParserMethod() throws ParseException {
+    public void shouldParseSimpleRow() throws ParseException {
         ArrayList<Article> expected = new ArrayList<>();
         expected.add(new Article(
                 1,
