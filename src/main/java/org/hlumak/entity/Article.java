@@ -7,7 +7,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class Article {
@@ -17,4 +16,5 @@ public class Article {
     private Date time;
     private Category category;
     private List<String> authors;
+    private Comment comment;
 }

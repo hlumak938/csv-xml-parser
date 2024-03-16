@@ -2,6 +2,7 @@ package org.hlumak.service;
 
 import org.hlumak.entity.Article;
 import org.hlumak.entity.Category;
+import org.hlumak.entity.Comment;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -27,13 +28,14 @@ public class CSVParserService {
         ArrayList<Article> articleList = new ArrayList<>();
         for (int i = 1; i < strings.length; i++) {
             String[] values = strings[i].split(";");
-            articleList.add(new Article((
-                    Integer.parseInt(values[0])),
+            articleList.add(new Article(
+                    Integer.parseInt(values[0]),
                     values[1],
                     values[2],
                     new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(values[3]),
                     Category.valueOf(values[4].toUpperCase()),
-                    new ArrayList<>(Arrays.asList(values[5].split(",")))
+                    new ArrayList<>(Arrays.asList(values[5].split(","))),
+                    new Comment(values.length == 7 ? values[6] : null, values.length == 8 ? Arrays.asList(values[7].split(",")) : null)
             ));
         }
 

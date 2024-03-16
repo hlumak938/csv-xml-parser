@@ -1,5 +1,6 @@
 package org.hlumak;
 
+import org.hlumak.entity.Comment;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.hlumak.service.CSVParserService;
@@ -24,7 +25,8 @@ public class AppTest {
                 "A recent study published in the Journal of Health Sciences reveals the numerous benefits of regular exercise, including improved cardiovascular health, increased energy levels, and reduced stress.",
                 new SimpleDateFormat("dd.MM.yyyy HH:mm").parse("24.01.2023  14:03:00"),
                 Category.HEALTH,
-                new ArrayList<>(Arrays.asList("John Doe", " Nicolas Spark")))
+                new ArrayList<>(Arrays.asList("John Doe", " Nicolas Spark")),
+                new Comment(null, null))
         );
         ArrayList<Article> result = csvParser.parse("C:\\Users\\XoXoJl\\Desktop\\Data_About_Articles.csv");
         Assertions.assertEquals(expected.get(0).toString(), result.get(0).toString());
