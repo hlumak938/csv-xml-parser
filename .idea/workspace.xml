@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="207169a9-5972-43b5-a055-7306ab4aa4e8" name="Changes" comment="Added a csv file, handler empty id from parser">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/service/ParserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/service/XMLParserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="207169a9-5972-43b5-a055-7306ab4aa4e8" name="Changes" comment="Added XMLParser">
       <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/service/CSVParserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/service/CSVParserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +61,7 @@
       <recent name="D:\Programming\Java_Projects\csv-xml-parser\src\main\java\org\hlumak" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="JUnit.CSVParserServiceTest">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.hlumak.App" />
       <module name="csv-xml-parser" />
@@ -107,8 +103,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
         <item itemvalue="JUnit.CSVParserServiceTest" />
+        <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
   </component>
@@ -129,7 +125,7 @@
       <updated>1710615305274</updated>
       <workItem from="1710615306343" duration="763000" />
       <workItem from="1710616079520" duration="16000" />
-      <workItem from="1710616112592" duration="2867000" />
+      <workItem from="1710616112592" duration="3176000" />
     </task>
     <task id="LOCAL-00001" summary="Made csvParse() method">
       <option name="closed" value="true" />
@@ -179,7 +175,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710618762003</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added XMLParser">
+      <option name="closed" value="true" />
+      <created>1710619173353</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1710619173353</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,6 +196,7 @@
     <MESSAGE value="Edited test" />
     <MESSAGE value="Added a few bug fixes, additional tests" />
     <MESSAGE value="Added a csv file, handler empty id from parser" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a csv file, handler empty id from parser" />
+    <MESSAGE value="Added XMLParser" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added XMLParser" />
   </component>
 </project>

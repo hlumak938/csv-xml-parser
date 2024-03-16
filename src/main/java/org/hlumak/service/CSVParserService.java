@@ -5,12 +5,12 @@ import org.hlumak.entity.Category;
 import org.hlumak.entity.Comment;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
 public class CSVParserService implements ParserService<String> {
     @Override
@@ -59,6 +59,50 @@ public class CSVParserService implements ParserService<String> {
 
     @Override
     public void writeInFile(String filePath, ArrayList<Article> articles) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (Field field : Article.class.getDeclaredFields()) {
+                stringBuilder.append(field.getName()).append(";");
+            }
+            stringBuilder.append("answers");
+            stringBuilder.append("\n");
+            for(Article article : articles) {
+                stringBuilder.append(article.getId()).append(";")
+                        .append(article.getTitle()).append(";");
 
+                String content = article.getContent().replace("\"", "\"\"");
+                if(content.contains(";")) {
+                    stringBuilder.append("\"").append(content).append("\"").append(";");
+                } else {
+                    stringBuilder.append(article.getContent()).append(";");
+                }
+
+                stringBuilder.append(new SimpleDateFormat("dd.MM.yyyy HH:mm").format(article.getTime())).append(";");
+
+                String category = article.getCategory().toString();
+                stringBuilder.append(category.charAt(0)).append(category.substring(1).toLowerCase()).append(";");
+
+                for (String author : article.getAuthors()) {
+                    stringBuilder.append(author).append(",");
+                }
+                stringBuilder.deleteCharAt(stringBuilder.length() - 1).append(";");
+
+                Comment comment;
+                if((comment = article.getComment()) != null) {
+                    stringBuilder.append(comment.getText()).append(";");
+                    List<String> answers;
+                    if((answers = comment.getAnswers()) != null) {
+                        for (String answer : answers) {
+                            stringBuilder.append(answer).append(",");
+                        }
+                        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+                    }
+                } else stringBuilder.append(";");
+                stringBuilder.append("\n");
+            }
+            bw.write(stringBuilder.toString());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
