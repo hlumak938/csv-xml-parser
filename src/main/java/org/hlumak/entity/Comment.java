@@ -1,17 +1,16 @@
 package org.hlumak.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@RequiredArgsConstructor
 @ToString
+@EqualsAndHashCode
 public class Comment {
-    private String comment;
+    private final String text;
     private List<String> answers;
 }
