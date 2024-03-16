@@ -12,7 +12,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 
-public class CSVParserService {
+public class CSVParserService implements ParserService<String> {
+    @Override
     public ArrayList<Article> parse(String stringForParse)  {
         String[] strings = stringForParse.split("\n");
         ArrayList<Article> articleList = new ArrayList<>();
@@ -40,6 +41,7 @@ public class CSVParserService {
         return articleList;
     }
 
+    @Override
     public String readFromFile(String filePath) {
         StringBuilder result = new StringBuilder();
 
@@ -53,5 +55,10 @@ public class CSVParserService {
         }
 
         return result.toString();
+    }
+
+    @Override
+    public void writeInFile(String filePath, ArrayList<Article> articles) {
+
     }
 }
