@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="207169a9-5972-43b5-a055-7306ab4aa4e8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/entity/Article.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/entity/Category.java" afterDir="false" />
+    <list default="true" id="207169a9-5972-43b5-a055-7306ab4aa4e8" name="Changes" comment="Made csvParse() method">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/service/CSVParserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/hlumak/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/hlumak/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -89,6 +86,13 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-3183f394aec4-7d648f2c" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -99,10 +103,24 @@
       <updated>1710615305274</updated>
       <workItem from="1710615306343" duration="763000" />
       <workItem from="1710616079520" duration="16000" />
+      <workItem from="1710616112592" duration="537000" />
     </task>
+    <task id="LOCAL-00001" summary="Made csvParse() method">
+      <option name="closed" value="true" />
+      <created>1710616425074</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710616425074</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Made csvParse() method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made csvParse() method" />
   </component>
 </project>
