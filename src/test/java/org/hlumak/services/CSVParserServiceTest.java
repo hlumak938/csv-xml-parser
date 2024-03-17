@@ -16,8 +16,8 @@ public class CSVParserServiceTest {
 
     private final CSVParserService csvParser = new CSVParserService();
 
-    String parseString = csvParser.readFromFile("files/Data_About_Articles.csv");
-    ArrayList<Article> result = csvParser.parse(parseString);
+    private final String parseString = csvParser.readFromFile("files/Data_About_Articles.csv");
+    private final ArrayList<Article> result = csvParser.parse(parseString);
 
     @Test
     public void shouldParseSimpleRow() {

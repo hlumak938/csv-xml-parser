@@ -2,7 +2,8 @@ package org.hlumak;
 
 import org.hlumak.entity.Article;
 import org.hlumak.service.CSVParserService;
-import org.hlumak.service.XMLParserService;
+import org.hlumak.service.XMLDOMParserService;
+import org.hlumak.service.XMLSAXParserService;
 import org.jdom2.Element;
 
 import java.util.ArrayList;
@@ -19,11 +20,14 @@ public class App
         csvParserService.writeInFile("files/Data_About_Articles.csv", articlesCSV);
 
         System.out.println("\nXML PARSER(DOM):");
-        XMLParserService xmlParserService = new XMLParserService();
-        xmlParserService.writeInFile("files/Data_About_Articles.xml", articlesCSV);
-        List<Element> articleElements = xmlParserService.readFromFile("files/Data_About_Articles.xml");
-        ArrayList<Article> articlesXML = xmlParserService.parse(articleElements);
+        XMLDOMParserService XMLDOMParserService = new XMLDOMParserService();
+        XMLDOMParserService.writeInFile("files/Data_About_Articles.xml", articlesCSV);
+        List<Element> articleElements = XMLDOMParserService.readFromFile("files/Data_About_Articles.xml");
+        ArrayList<Article> articlesXML = XMLDOMParserService.parse(articleElements);
         articlesXML.forEach(System.out::println);
+
+        System.out.println("\nXML PARSER(SAX):");
+        System.out.println(new XMLSAXParserService().readFromFile("parser/files/Data_About_Articles.xml"));
     }
 
 }

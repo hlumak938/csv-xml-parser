@@ -15,7 +15,7 @@ import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class XMLParserService implements ParserService<List<Element>> {
+public class XMLDOMParserService implements ParserService<List<Element>> {
     @Override
     public ArrayList<Article> parse(List<Element> elements) {
         ArrayList<Article> articles = new ArrayList<>();

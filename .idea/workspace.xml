@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="207169a9-5972-43b5-a055-7306ab4aa4e8" name="Changes" comment="Added XMLParser">
+    <list default="true" id="207169a9-5972-43b5-a055-7306ab4aa4e8" name="Changes" comment="Added XMLSAXParser">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/service/MapArticleObjectHandlerSax.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/service/XMLSAXParserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/entity/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/entity/Article.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/entity/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/service/XMLParserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/service/XMLDOMParserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/hlumak/services/CSVParserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/hlumak/services/CSVParserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,30 +45,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "JUnit.CSVParserServiceTest.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CSVParserServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Programming\Java_Projects\csv-xml-parser\src\main\java\org\hlumak" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CSVParserServiceTest">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.hlumak.App" />
       <module name="csv-xml-parser" />
@@ -125,7 +132,9 @@
       <updated>1710615305274</updated>
       <workItem from="1710615306343" duration="763000" />
       <workItem from="1710616079520" duration="16000" />
-      <workItem from="1710616112592" duration="3176000" />
+      <workItem from="1710616112592" duration="3464000" />
+      <workItem from="1710619622406" duration="15000" />
+      <workItem from="1710713192891" duration="348000" />
     </task>
     <task id="LOCAL-00001" summary="Made csvParse() method">
       <option name="closed" value="true" />
@@ -183,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710619173353</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added XMLParser">
+      <option name="closed" value="true" />
+      <created>1710619403720</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1710619403720</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +214,7 @@
     <MESSAGE value="Added a few bug fixes, additional tests" />
     <MESSAGE value="Added a csv file, handler empty id from parser" />
     <MESSAGE value="Added XMLParser" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added XMLParser" />
+    <MESSAGE value="Added XMLSAXParser" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added XMLSAXParser" />
   </component>
 </project>

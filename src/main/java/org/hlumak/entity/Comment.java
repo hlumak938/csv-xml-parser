@@ -7,10 +7,14 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @ToString
 @EqualsAndHashCode
 public class Comment {
-    private final String text;
+    private String text;
     private List<String> answers;
+
+    public Comment(String text) {
+        this.text = text;
+    }
 }
