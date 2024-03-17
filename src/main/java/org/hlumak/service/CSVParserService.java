@@ -12,13 +12,17 @@ import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class CSVParserService implements ParserService<String> {
+public class CSVParserService implements ParserService<String>, WriterService {
     @Override
     public ArrayList<Article> parse(String stringForParse)  {
         String[] strings = stringForParse.split("\n");
         ArrayList<Article> articleList = new ArrayList<>();
         for (int i = 1; i < strings.length; i++) {
             String[] values = strings[i].split(";(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+
+            int id = Objects.equals(values[0], "") ? 0 : Integer.parseInt(values[0]);
+            String title = values[1];
+            String content = values[2].replaceAll("^\"|\"$", "").replace("\"\"", "\"");
 
             Date articleTime = null;
             try {
@@ -27,15 +31,17 @@ public class CSVParserService implements ParserService<String> {
                 System.out.println(e.getMessage());
             }
 
-            articleList.add(new Article(
-                    Objects.equals(values[0], "") ? 0 : Integer.parseInt(values[0]),
-                    values[1],
-                    values[2].replaceAll("^\"|\"$", "").replace("\"\"", "\""),
-                    articleTime,
-                    Category.valueOf(values[4].toUpperCase()),
-                    new ArrayList<>(Arrays.asList(values[5].split(","))),
-                    values.length == 7 ? new Comment(values[6]) : values.length == 8 ? new Comment(values[6], Arrays.asList(values[7].split(","))) : null
-            ));
+            Category category = Category.valueOf(values[4].toUpperCase());
+            List<String> authors = Arrays.asList(values[5].split(","));
+
+            Comment comment = null;
+            if(values.length == 7) {
+                comment = new Comment(values[6]);
+            } else if(values.length == 8) {
+                comment = new Comment(values[6], Arrays.asList(values[7].split(",")));
+            }
+
+            articleList.add(new Article(id, title, content, articleTime, category, authors, comment));
         }
 
         return articleList;

@@ -9,6 +9,4 @@ public interface ParserService<T> {
     ArrayList<Article> parse(T obj);
 
     T readFromFile(String filePath);
-
-    void writeInFile(String filePath, ArrayList<Article> articles);
 }

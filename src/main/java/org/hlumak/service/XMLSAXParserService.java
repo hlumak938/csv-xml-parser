@@ -32,9 +32,4 @@ public class XMLSAXParserService implements ParserService<MapArticleObjectHandle
         }
         return handler;
     }
-
-    @Override
-    public void writeInFile(String filePath, ArrayList<Article> articles) {
-
-    }
 }
