@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="207169a9-5972-43b5-a055-7306ab4aa4e8" name="Changes" comment="Added XMLSAXParser">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/service/MapArticleObjectHandlerSax.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/service/XMLSAXParserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/entity/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/entity/Article.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/service/XMLParserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/service/XMLDOMParserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/hlumak/services/CSVParserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/hlumak/services/CSVParserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hlumak/service/MapArticleObjectHandlerSax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hlumak/service/MapArticleObjectHandlerSax.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,8 +104,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CSVParserServiceTest" />
         <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.CSVParserServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -134,7 +128,7 @@
       <workItem from="1710616079520" duration="16000" />
       <workItem from="1710616112592" duration="3464000" />
       <workItem from="1710619622406" duration="15000" />
-      <workItem from="1710713192891" duration="348000" />
+      <workItem from="1710713192891" duration="670000" />
     </task>
     <task id="LOCAL-00001" summary="Made csvParse() method">
       <option name="closed" value="true" />
@@ -200,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710619403720</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added XMLSAXParser">
+      <option name="closed" value="true" />
+      <created>1710713564364</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1710713564364</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -2,6 +2,7 @@ package org.hlumak;
 
 import org.hlumak.entity.Article;
 import org.hlumak.service.CSVParserService;
+import org.hlumak.service.MapArticleObjectHandlerSax;
 import org.hlumak.service.XMLDOMParserService;
 import org.hlumak.service.XMLSAXParserService;
 import org.jdom2.Element;
@@ -27,7 +28,10 @@ public class App
         articlesXML.forEach(System.out::println);
 
         System.out.println("\nXML PARSER(SAX):");
-        System.out.println(new XMLSAXParserService().readFromFile("parser/files/Data_About_Articles.xml"));
+        XMLSAXParserService xmlSAXParserService = new XMLSAXParserService();
+        MapArticleObjectHandlerSax mapArticleObjectHandlerSax = xmlSAXParserService.readFromFile("files/Data_About_Articles.xml");
+        ArrayList<Article> articlesXMLSAX = xmlSAXParserService.parse(mapArticleObjectHandlerSax);
+        articlesXMLSAX.forEach(System.out::println);
     }
 
 }

@@ -10,16 +10,17 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 public class MapArticleObjectHandlerSax extends DefaultHandler {
     private final StringBuilder currentValue = new StringBuilder();
     @Getter
-    List<Article> result;
-    Article currentArticle;
-    Comment currentComment;
+    private List<Article> result;
+    private Article currentArticle;
+    private Comment currentComment;
+    private List<String> currentAuthors;
+    private List<String> currentAnswers;
 
     @Override
     public void startDocument() {
@@ -27,31 +28,29 @@ public class MapArticleObjectHandlerSax extends DefaultHandler {
     }
 
     @Override
-    public void startElement(
-            String uri,
-            String localName,
-            String qName,
-            Attributes attributes) {
+    public void startElement(String uri, String localName, String qName, Attributes attributes) {
 
-        // reset the tag value
         currentValue.setLength(0);
 
-        // start of loop
         if (qName.equalsIgnoreCase("article")) {
-            // new article
             currentArticle = new Article();
         }
 
         if (qName.equalsIgnoreCase("comment")) {
-            // new article
             currentComment = new Comment();
+        }
+
+        if (qName.equalsIgnoreCase("authors")) {
+            currentAuthors = new ArrayList<>();
+        }
+
+        if (qName.equalsIgnoreCase("answers")) {
+            currentAnswers = new ArrayList<>();
         }
 
     }
 
-    public void endElement(String uri,
-                           String localName,
-                           String qName) {
+    public void endElement(String uri, String localName, String qName) {
 
         if (qName.equalsIgnoreCase("id")) {
             currentArticle.setId(Integer.parseInt(currentValue.toString()));
@@ -66,11 +65,11 @@ public class MapArticleObjectHandlerSax extends DefaultHandler {
         }
 
         if (qName.equalsIgnoreCase("time")) {
-            Date time;
+            Date time = null;
             try {
                 time = new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(currentValue.toString());
             } catch (ParseException e) {
-                throw new RuntimeException(e);
+                System.out.println(e.getMessage());
             }
             currentArticle.setTime(time);
         }
@@ -79,13 +78,30 @@ public class MapArticleObjectHandlerSax extends DefaultHandler {
             currentArticle.setCategory(Category.valueOf(currentValue.toString()));
         }
 
-        if (qName.equalsIgnoreCase("authors")) {
-            currentArticle.setAuthors(Collections.singletonList(currentValue.toString()));
+        if (qName.equalsIgnoreCase("author")) {
+            currentAuthors.add(currentValue.toString());
         }
 
-        currentArticle.setComment(null);
+        if (qName.equalsIgnoreCase("authors")) {
+            currentArticle.setAuthors(currentAuthors);
+        }
 
-        // end of loop
+        if (qName.equalsIgnoreCase("comment")) {
+            currentArticle.setComment(currentComment);
+        }
+
+        if (qName.equalsIgnoreCase("text")) {
+            currentComment.setText(currentValue.toString());
+        }
+
+        if (qName.equalsIgnoreCase("answers")) {
+            currentComment.setAnswers(currentAnswers);
+        }
+
+        if (qName.equalsIgnoreCase("answer")) {
+            currentAnswers.add(currentValue.toString());
+        }
+
         if (qName.equalsIgnoreCase("article")) {
             result.add(currentArticle);
         }
