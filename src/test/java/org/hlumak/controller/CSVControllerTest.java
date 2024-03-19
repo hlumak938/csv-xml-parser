@@ -9,6 +9,7 @@ import org.hlumak.service.CSVService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -24,6 +25,12 @@ public class CSVControllerTest {
     public CSVControllerTest() throws ParseException {
     }
 
+    @Test
+    public void createCSV() {
+        String path = "src/test/resources/test_files/Articles.csv";
+        csvController.createFile(path, articles);
+        Assertions.assertTrue(new File(path).exists());
+    }
 
     @Test
     public void shouldParseSimpleRow() {

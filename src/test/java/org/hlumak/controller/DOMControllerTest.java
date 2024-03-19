@@ -9,6 +9,7 @@ import org.hlumak.service.DOMService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -23,6 +24,12 @@ public class DOMControllerTest {
     public DOMControllerTest() throws ParseException {
     }
 
+    @Test
+    public void createDOM() {
+        String path = "src/test/resources/test_files/ArticlesDOM.xml";
+        domController.createFile(path, articles);
+        Assertions.assertTrue(new File(path).exists());
+    }
 
     @Test
     public void shouldParseSimpleElement() {

@@ -8,6 +8,7 @@ import org.hlumak.service.SAXService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -17,6 +18,13 @@ public class SAXControllerTest {
     private final SAXController saxController = new SAXController(new SAXService(new SAXConnector()));
 
     private final List<Article> articles = saxController.getAll("src/test/resources/files/Articles.xml");
+
+    @Test
+    public void createSAX() {
+        String path = "src/test/resources/test_files/ArticlesSAX.xml";
+        saxController.createFile(path, articles);
+        Assertions.assertTrue(new File(path).exists());
+    }
 
     @Test
     public void shouldParseSimpleElement() {
