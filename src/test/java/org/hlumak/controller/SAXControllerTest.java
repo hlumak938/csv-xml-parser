@@ -1,28 +1,26 @@
-package org.hlumak.services;
+package org.hlumak.controller;
 
-import org.hlumak.entity.Article;
-import org.hlumak.entity.Category;
-import org.hlumak.entity.Comment;
-import org.hlumak.service.XMLDOMParserService;
-import org.jdom2.Element;
+import org.hlumak.bom.Article;
+import org.hlumak.bom.Category;
+import org.hlumak.bom.Comment;
+import org.hlumak.connector.SAXConnector;
+import org.hlumak.service.SAXService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-public class XMLDOMParserServiceTest {
-    private final XMLDOMParserService xmlParser = new XMLDOMParserService();
+public class SAXControllerTest {
+    private final SAXController saxController = new SAXController(new SAXService(new SAXConnector()));
 
-    private final List<Element> parseString = xmlParser.readFromFile("files/Data_About_Articles.xml");
-    private final ArrayList<Article> result = xmlParser.parse(parseString);
+    private final List<Article> articles = saxController.getAll("src/test/resources/files/Articles.xml");
 
     @Test
-    public void shouldParseSimpleRow() {
-        Article article = result.get(0);
+    public void shouldParseSimpleElement() {
+        Article article = articles.get(0);
         Assertions.assertEquals(1, article.getId());
         Assertions.assertEquals("New Study Shows Benefits of Exercise", article.getTitle());
 
@@ -45,20 +43,20 @@ public class XMLDOMParserServiceTest {
     }
 
     @Test
-    public void shouldParseRowWithComment() {
-        Article article = result.get(1);
+    public void shouldParseElementWithComment() {
+        Article article = articles.get(1);
         Assertions.assertEquals("Comment1", article.getComment().getText());
     }
 
     @Test
-    public void shouldParseRowWithCommentAndAnswers() {
-        Article article = result.get(3);
+    public void shouldParseElementWithCommentAndAnswers() {
+        Article article = articles.get(3);
         Assertions.assertEquals(new Comment("Comment3", Arrays.asList("Answer1", "Answer2")), article.getComment());
     }
 
     @Test
-    public void shouldParseRowWithCyrillicSemicolon() {
-        Article article = result.get(4);
+    public void shouldParseElementWithCyrillicSemicolon() {
+        Article article = articles.get(4);
         String expected = "Researchers анонс a \"major breakthrough\" in cancer research; uncovering a potential new treatment that targets specific cancer cells while minimizing side effects.";
         Assertions.assertEquals(expected, article.getContent());
     }

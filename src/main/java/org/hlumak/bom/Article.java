@@ -1,4 +1,4 @@
-package org.hlumak.entity;
+package org.hlumak.bom;
 
 import lombok.*;
 
@@ -11,11 +11,19 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class Article {
+
     private int id;
+
     private String title;
+
     private String content;
+
     private Date time;
+
     private Category category;
+
     private List<String> authors;
+
     private Comment comment;
+
 }

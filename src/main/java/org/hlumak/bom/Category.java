@@ -1,4 +1,4 @@
-package org.hlumak.entity;
+package org.hlumak.bom;
 
 public enum Category {
     HEALTH,

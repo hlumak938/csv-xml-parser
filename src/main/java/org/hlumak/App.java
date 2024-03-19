@@ -1,37 +1,34 @@
 package org.hlumak;
 
-import org.hlumak.entity.Article;
-import org.hlumak.service.CSVParserService;
-import org.hlumak.service.MapArticleObjectHandlerSax;
-import org.hlumak.service.XMLDOMParserService;
-import org.hlumak.service.XMLSAXParserService;
-import org.jdom2.Element;
+import org.hlumak.bom.Article;
+import org.hlumak.connector.CSVConnector;
+import org.hlumak.connector.DOMConnector;
+import org.hlumak.connector.SAXConnector;
+import org.hlumak.controller.CSVController;
+import org.hlumak.controller.DOMController;
+import org.hlumak.controller.SAXController;
+import org.hlumak.convertor.CSVConvertor;
+import org.hlumak.convertor.DOMConvertor;
+import org.hlumak.service.CSVService;
+import org.hlumak.service.DOMService;
+import org.hlumak.service.SAXService;
 
-import java.util.ArrayList;
+import java.text.ParseException;
 import java.util.List;
 
-public class App 
-{
-    public static void main(String[] args) {
-        System.out.println("CSV PARSER:");
-        CSVParserService csvParserService = new CSVParserService();
-        String parseString =  csvParserService.readFromFile("files/Data_About_Articles.csv");
-        ArrayList<Article> articlesCSV = csvParserService.parse(parseString);
-        articlesCSV.forEach(System.out::println);
-        csvParserService.writeInFile("files/Data_About_Articles.csv", articlesCSV);
+public class App {
+    public static void main(String[] args) throws ParseException {
+        CSVController csvController = new CSVController(new CSVService(new CSVConnector(), new CSVConvertor()));
+        List<Article> articlesCSV = csvController.getAll(args[0]);
+        csvController.createFile(args[1], articlesCSV);
 
-        System.out.println("\nXML PARSER(DOM):");
-        XMLDOMParserService XMLDOMParserService = new XMLDOMParserService();
-        XMLDOMParserService.writeInFile("files/Data_About_Articles.xml", articlesCSV);
-        List<Element> articleElements = XMLDOMParserService.readFromFile("files/Data_About_Articles.xml");
-        ArrayList<Article> articlesXML = XMLDOMParserService.parse(articleElements);
-        articlesXML.forEach(System.out::println);
+        DOMController domController = new DOMController(new DOMService(new DOMConnector(), new DOMConvertor()));
+        List<Article> articlesDOM = domController.getAll(args[2]);
+        domController.createFile(args[3], articlesDOM);
 
-        System.out.println("\nXML PARSER(SAX):");
-        XMLSAXParserService xmlSAXParserService = new XMLSAXParserService();
-        MapArticleObjectHandlerSax mapArticleObjectHandlerSax = xmlSAXParserService.readFromFile("files/Data_About_Articles.xml");
-        ArrayList<Article> articlesXMLSAX = xmlSAXParserService.parse(mapArticleObjectHandlerSax);
-        articlesXMLSAX.forEach(System.out::println);
+        SAXController saxController = new SAXController(new SAXService(new SAXConnector()));
+        List<Article> articles = saxController.getAll(args[2]);
+        saxController.createFile(args[4], articles);
     }
 
 }
