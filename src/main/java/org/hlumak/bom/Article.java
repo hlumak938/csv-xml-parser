@@ -1,18 +1,20 @@
 package org.hlumak.bom;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @ToString
 public class Article {
 
-    private int id;
+    private final int id;
 
     private String title;
 
@@ -25,5 +27,4 @@ public class Article {
     private List<String> authors;
 
     private Comment comment;
-
 }

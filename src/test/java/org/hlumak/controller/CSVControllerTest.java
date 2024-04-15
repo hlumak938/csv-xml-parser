@@ -3,52 +3,33 @@ package org.hlumak.controller;
 import org.hlumak.bom.Article;
 import org.hlumak.bom.Category;
 import org.hlumak.bom.Comment;
-import org.hlumak.connector.CSVConnector;
-import org.hlumak.convertor.CSVConvertor;
-import org.hlumak.service.CSVService;
+import org.hlumak.connector.SystemFileConnector;
+import org.hlumak.convertor.ArticleConvertor;
+import org.hlumak.service.ArticleService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 public class CSVControllerTest {
 
-    private final CSVController csvController = new CSVController(new CSVService(new CSVConnector(), new CSVConvertor()));
-
-    private final List<Article> articles = csvController.getAll("src/test/resources/files/Articles.csv");
-
-    public CSVControllerTest() throws ParseException {
-    }
-
-    @Test
-    public void createCSV() {
-        String path = "src/test/resources/test_files/Articles.csv";
-        csvController.createFile(path, articles);
-        Assertions.assertTrue(new File(path).exists());
-    }
+    private final ArticleController csvController = new ArticleController(new ArticleService(new ArticleConvertor(), new SystemFileConnector()));
 
     @Test
     public void shouldParseSimpleRow() {
-        Article article = articles.get(0);
+        List<Article> articles = csvController.getAll("src/test/resources/files/Articles");
+        Article article = articles.getFirst();
         Assertions.assertEquals(1, article.getId());
         Assertions.assertEquals("New Study Shows Benefits of Exercise", article.getTitle());
 
         String expectedContent = "A recent study published in the Journal of Health Sciences reveals the numerous benefits of regular exercise, including improved cardiovascular health, increased energy levels, and reduced stress.";
         Assertions.assertEquals(expectedContent, article.getContent());
 
-        String time = "24.01.2023  14:03:00";
-        Date articleTime = null;
-        try {
-            articleTime = new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(time);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        Assertions.assertEquals(articleTime, article.getTime());
+        Assertions.assertEquals(
+                "24.01.2023 14:03",
+                new SimpleDateFormat("dd.MM.yyyy HH:mm").format(article.getTime())
+        );
 
         Assertions.assertEquals(Category.HEALTH, article.getCategory());
 
@@ -58,20 +39,29 @@ public class CSVControllerTest {
 
     @Test
     public void shouldParseRowWithComment() {
+        List<Article> articles = csvController.getAll("src/test/resources/files/Articles");
         Article article = articles.get(1);
         Assertions.assertEquals("Comment1", article.getComment().getText());
     }
 
     @Test
     public void shouldParseRowWithCommentAndAnswers() {
+        List<Article> articles = csvController.getAll("src/test/resources/files/Articles");
         Article article = articles.get(3);
-        Assertions.assertEquals(new Comment("Comment3", Arrays.asList("Answer1", " Answer2")), article.getComment());
+        Comment comment = article.getComment();
+        List<String> answers = comment.getAnswers();
+        Assertions.assertEquals("Comment3", comment.getText());
+        Assertions.assertEquals("Answer1", answers.getFirst());
+        Assertions.assertEquals(" Answer2", answers.get(1));
     }
 
     @Test
     public void shouldParseRowWithCyrillicSemicolon() {
+        List<Article> articles = csvController.getAll("src/test/resources/files/Articles");
         Article article = articles.get(4);
-        String expected = "Researchers анонс a \"major breakthrough\" in cancer research; uncovering a potential new treatment that targets specific cancer cells while minimizing side effects.";
-        Assertions.assertEquals(expected, article.getContent());
+        Assertions.assertEquals(
+                "Researchers анонс a \"major breakthrough\" in cancer research; uncovering a potential new treatment that targets specific cancer cells while minimizing side effects.",
+                article.getContent()
+        );
     }
 }

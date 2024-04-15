@@ -3,16 +3,17 @@ package org.hlumak.convertor;
 import org.hlumak.bom.Article;
 import org.hlumak.bom.Category;
 import org.hlumak.bom.Comment;
-import org.hlumak.dto.CSVDTO;
 
 import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class CSVConvertor implements Convertor<CSVDTO> {
+public class ArticleCSVConvertorStrategy implements ConvertorStrategy {
+
     @Override
-    public CSVDTO toDTO(List<Article> articles) {
+    public byte[] toDTO(List<Article> articles) {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (Field field : Article.class.getDeclaredFields()) {
@@ -55,35 +56,45 @@ public class CSVConvertor implements Convertor<CSVDTO> {
             } else stringBuilder.append(";");
             stringBuilder.append("\n");
         }
-        return new CSVDTO(stringBuilder.toString());
+        return stringBuilder.toString().getBytes();
     }
 
     @Override
-    public List<Article> fromDTO(CSVDTO dto) throws ParseException {
-        String[] strings = dto.getParseString().split("\n");
-        ArrayList<Article> articleList = new ArrayList<>();
-        for (int i = 1; i < strings.length; i++) {
-            String[] values = strings[i].split(";(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+    public List<Article> fromDTO(byte[] bytes) {
+        try {
+            String parseString = new String(bytes);
+            String[] strings = parseString.split("\r\n");
+            ArrayList<Article> result = new ArrayList<>();
+            for (int i = 1; i < strings.length; i++) {
+                String[] values = strings[i].split(";(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
 
-            int id = Objects.equals(values[0], "") ? 0 : Integer.parseInt(values[0]);
-            String title = values[1];
-            String content = values[2].replaceAll("^\"|\"$", "").replace("\"\"", "\"");
+                Article article = new Article(Integer.parseInt(values[0]));
+                article.setTitle(values[1]);
+                article.setContent(values[2].replaceAll("^\"|\"$", "").replace("\"\"", "\""));
+                article.setTime(new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(values[3]));
+                article.setCategory(Category.valueOf(values[4].toUpperCase()));
+                article.setAuthors(List.of(values[5].split(",")));
 
-            Date articleTime = new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(values[3]);
+                final int COMMENT_POSITION = 7;
+                final int ANSWERS_POSITION = 8;
+                if (values.length == COMMENT_POSITION) {
+                    article.setComment(new Comment(values[6]));
+                } else if (values.length == ANSWERS_POSITION) {
+                    article.setComment(new Comment(values[6]));
+                    article.getComment().setAnswers(List.of(values[7].split(",")));
+                }
 
-            Category category = Category.valueOf(values[4].toUpperCase());
-            List<String> authors = Arrays.asList(values[5].split(","));
-
-            Comment comment = null;
-            if (values.length == 7) {
-                comment = new Comment(values[6]);
-            } else if (values.length == 8) {
-                comment = new Comment(values[6], Arrays.asList(values[7].split(",")));
+                result.add(article);
             }
 
-            articleList.add(new Article(id, title, content, articleTime, category, authors, comment));
+            return result;
+        } catch (ParseException e) {
+            throw new RuntimeException("Couldn't parse bytes!", e);
         }
+    }
 
-        return articleList;
+    @Override
+    public String getExtension() {
+        return ".csv";
     }
 }
