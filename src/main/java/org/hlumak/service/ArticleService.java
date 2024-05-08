@@ -1,15 +1,17 @@
 package org.hlumak.service;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.hlumak.bom.Article;
 import org.hlumak.connector.Connector;
 import org.hlumak.converter.ArticleConverter;
-import org.hlumak.converter.ConverterStrategy;
+import org.hlumak.converter.factory.ArticleCSVConverterFactory;
+import org.hlumak.converter.factory.ArticleDOMConverterFactory;
+import org.hlumak.converter.factory.ArticleSAXConverterFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class ArticleService {
 
@@ -24,7 +26,13 @@ public class ArticleService {
         return articleConverter.fromDTO(connector.read(path + articleConverter.getExtension()));
     }
 
-    public void setConvertor(ConverterStrategy convertor) {
-        articleConverter.setConverter(convertor);
+    public void setConvertor(String strategy) {
+        if(strategy.equalsIgnoreCase("DOM")) {
+            articleConverter.setConverter(new ArticleDOMConverterFactory());
+        } else if(strategy.equalsIgnoreCase("SAX")) {
+            articleConverter.setConverter(new ArticleSAXConverterFactory());
+        } else if(strategy.equalsIgnoreCase("CSV")) {
+            articleConverter.setConverter(new ArticleCSVConverterFactory());
+        }
     }
 }

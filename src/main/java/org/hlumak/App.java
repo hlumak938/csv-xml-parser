@@ -3,8 +3,6 @@ package org.hlumak;
 import lombok.extern.slf4j.Slf4j;
 import org.hlumak.bom.Article;
 import org.hlumak.controller.ArticleController;
-import org.hlumak.converter.ArticleDOMConverterStrategy;
-import org.hlumak.converter.ArticleSAXConverterStrategy;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeExceptionMapper;
 import org.springframework.boot.SpringApplication;
@@ -44,17 +42,19 @@ public class App {
         return args -> {
             String filePath = "src/test/resources/files/Articles";
 
+            articleController.setConvertor("CSV");
+
             List<Article> articles = articleController.getAll(filePath);
             articles.forEach(article -> log.info(article.toString()));
             articleController.createFile("src/test/resources/files/Articles_new", articles);
 
-            articleController.setConvertor(new ArticleDOMConverterStrategy());
+            articleController.setConvertor("DOM");
 
             articles = articleController.getAll(filePath);
             articles.forEach(article -> log.info(article.toString()));
             articleController.createFile("src/test/resources/files/Articles_new", articles);
 
-            articleController.setConvertor(new ArticleSAXConverterStrategy());
+            articleController.setConvertor("SAX");
 
             articles = articleController.getAll(filePath);
             articles.forEach(article -> log.info(article.toString()));

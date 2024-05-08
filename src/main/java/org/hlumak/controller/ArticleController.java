@@ -1,18 +1,17 @@
 package org.hlumak.controller;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.hlumak.bom.Article;
-import org.hlumak.converter.ConverterStrategy;
-import org.hlumak.service.ArticleService;
+import org.hlumak.service.decorator.ArticleServiceDecorator;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Controller
 public class ArticleController {
 
-    private final ArticleService service;
+    private final ArticleServiceDecorator service;
 
     public void createFile(String path, List<Article> articles) {
         service.createFile(path, articles);
@@ -22,7 +21,7 @@ public class ArticleController {
         return service.getAll(path);
     }
 
-    public void setConvertor(ConverterStrategy convertor) {
-        service.setConvertor(convertor);
+    public void setConvertor(String strategy) {
+        service.setConvertor(strategy);
     }
 }

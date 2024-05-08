@@ -1,4 +1,4 @@
-package org.hlumak.converter;
+package org.hlumak.converter.strategy;
 
 import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
 import org.hlumak.bom.Article;

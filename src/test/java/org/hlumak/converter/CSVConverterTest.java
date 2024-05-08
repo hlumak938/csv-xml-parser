@@ -3,6 +3,7 @@ package org.hlumak.converter;
 import org.hlumak.bom.Article;
 import org.hlumak.bom.Category;
 import org.hlumak.bom.Comment;
+import org.hlumak.converter.strategy.ArticleCSVConverterStrategy;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;

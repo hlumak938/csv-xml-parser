@@ -3,6 +3,7 @@ package org.hlumak.converter;
 import org.hlumak.bom.Article;
 import org.hlumak.bom.Category;
 import org.hlumak.bom.Comment;
+import org.hlumak.converter.strategy.ArticleDOMConverterStrategy;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;

@@ -1,4 +1,4 @@
-package org.hlumak.converter;
+package org.hlumak.converter.strategy;
 
 import org.hlumak.bom.Article;
 import org.hlumak.bom.Category;

@@ -5,8 +5,8 @@ import org.hlumak.bom.Category;
 import org.hlumak.bom.Comment;
 import org.hlumak.connector.SystemFileConnector;
 import org.hlumak.converter.ArticleConverter;
-import org.hlumak.converter.ArticleSAXConverterStrategy;
 import org.hlumak.service.ArticleService;
+import org.hlumak.service.decorator.LoggingArticleServiceDecorator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,10 +14,10 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class SAXControllerTest {
-    private final ArticleController saxController = new ArticleController(new ArticleService(new ArticleConverter(), new SystemFileConnector()));
+    private final ArticleController saxController = new ArticleController(new LoggingArticleServiceDecorator(new ArticleService(new ArticleConverter(), new SystemFileConnector())));
 
     private SAXControllerTest() {
-        saxController.setConvertor(new ArticleSAXConverterStrategy());
+        saxController.setConvertor("SAX");
     }
 
     @Test
